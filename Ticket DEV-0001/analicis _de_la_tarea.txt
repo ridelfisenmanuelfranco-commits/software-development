@@ -1,0 +1,38 @@
+===============================================================================================
+                                        INFORME DE LA TAREA
+===============================================================================================
+
+1 -> Que estructura de datos utilizaras y por que?
+    listas y diccionarios, asi el diccionario representa
+    una pelicula en si y la lista representa la cartelera
+    la cual tendra muchas peliculas en ella.
+
+2 -> Que funciones crearas?
+    mostrar_menu(), obtener_codigo_pelicula(), 
+    obtener_titulo_pelicula(), obtener_genero_pelicula(), 
+    obtener_anio_pelicula(), obtener_cantidad_peliculas(),
+    crea_pelicula(), agregar_pelicula(),
+    mostrar_pelicula(), mostrar_peliculas(),
+    buscar_pelicula_por_codigo(), actualizar_cantidad_pelicula(),
+    eliminar_pelicula(), mostrar_estadisticas(),
+
+
+3 -> Que recibira cada funcion?
+    La funcion mostrar_pelicula() recibira 2 parametros
+    que seran la pelicula y el indice.
+
+4 -> Que devolvera cada funcion?
+    Cada funcion retornara el un valor,
+    la funcion obtener_codigo_pelicula() returnara el codigo 
+    y asi sucesivamente
+
+5 -> Como evitaras repetir codigo?
+    Analizando y dividiendo responsabilidades.
+
+6 -> Que validaciones seran reutilizables.?
+    debemos validar cada dato que entra al sistema.
+
+7 -> Que partes del sistema podrian crecer en futuras versiones?
+    La estructura para almacenar peliculas, podemos modificarlaas 
+    para que los datos persistan.
+
