@@ -36,7 +36,7 @@ Dependiendo del proyecto, se utilizarán tecnologías como:
 | 🎬 Sistema de Gestión de Películas | ✅ Finalizado |
 | 🐶 Sistema de Gestión Veterinaria | ✅ Finalizado |
 | 📚 Sistema de Gestión de Biblioteca | ✅ Finalizado |
-| 💊 Sistema de Gestión de Farmacia | ⏳ Planeado |
+| 💊 Sistema de Gestión de Farmacia | ✅ Finalizado |
 | 🛒 Sistema de Inventario | ⏳ Planeado |
 | 🔐 Sistema de Autenticación | ⏳ Planeado |
 | 🌐 API REST | ⏳ Planeado |
