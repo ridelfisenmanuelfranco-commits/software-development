@@ -1,0 +1,8 @@
+Preguntas nesesarias para planificar los requisitos del sistema.
+
+- Como el sistema es para una biblioteca, es necesario saber 
+ciertas informaciones.
+1 -> que datos van a representar cada libro.
+2 -> que fundionalidades es necesario que tenga el sistema.
+3 -> cual es el problema mas importante resolver.
+4 -> existe alguna regla en particular que es obligatoria agregar o segui.
