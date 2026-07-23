@@ -22,13 +22,9 @@ Cada proyecto busca simular escenarios del mundo laboral, aplicando metodología
 Dependiendo del proyecto, se utilizarán tecnologías como:
 
 - Python
-- C#
 - JavaScript
-- SQL
 - Git & GitHub
-- APIs REST
 - JSON
-- Docker
 - Linux
 
 ---
@@ -37,10 +33,9 @@ Dependiendo del proyecto, se utilizarán tecnologías como:
 
 | Proyecto | Estado |
 |----------|--------|
-| 🧾 Sistema de Facturación | 🚧 En desarrollo |
-| 🎮 Arena Gaming | 🚧 En desarrollo |
-| 📋 Gestor de Hábitos | 🚧 En desarrollo |
-| 📚 Sistema de Biblioteca Avanzado | ⏳ Planeado |
+| 🎬 Sistema de Gestión de Películas | ✅ Finalizado |
+| 🐶 Sistema de Gestión Veterinaria | ✅ Finalizado |
+| 📚 Sistema de Gestión de Biblioteca | ✅ Finalizado |
 | 🏨 Sistema de Gestión Hotelera | ⏳ Planeado |
 | 🛒 Sistema de Inventario | ⏳ Planeado |
 | 🔐 Sistema de Autenticación | ⏳ Planeado |
