@@ -12,7 +12,7 @@ contador = 1
 
 
 #---------------------------------------------------------------------------------------
-# 
+#                               MOSTRAR MENU
 #---------------------------------------------------------------------------------------
 def mostrar_menu():
     print('=====================================================')
@@ -28,7 +28,7 @@ def mostrar_menu():
     
     
 #---------------------------------------------------------------------------------------
-# 
+#                                       MOSTRAR CATEGORIAS
 #---------------------------------------------------------------------------------------
 def mostrar_categorias():
     print('''
@@ -45,7 +45,7 @@ def mostrar_categorias():
     ''')
 
 #---------------------------------------------------------------------------------------
-# 
+#                                  OBTENER CATEGORIA
 #---------------------------------------------------------------------------------------
 def obtener_categoria():
     while True:
@@ -57,7 +57,7 @@ def obtener_categoria():
             print('\n[ Categoria invalida. ]\n')
             continue
         
-        os.system('clear')
+        os.system("cls") 
         
         match categoria:
             case 1:
@@ -83,7 +83,7 @@ def obtener_categoria():
     
                 
 #---------------------------------------------------------------------------------------
-# 
+#                           OBTENER CODIGO DEL MEDICAMENTO
 #---------------------------------------------------------------------------------------
 def generar_codigo():
     global contador
@@ -94,7 +94,7 @@ def generar_codigo():
 
 
 #---------------------------------------------------------------------------------------
-# 
+#                                   OBTENER DATO DE TIPO TEXTO
 #---------------------------------------------------------------------------------------
 def obtener_texto(prompt):
     while True:
@@ -108,9 +108,21 @@ def obtener_texto(prompt):
         
         return dato
     
+#---------------------------------------------------------------------------------------
+#                       OBTENER DATO DE SI ES CON RECETA MEDICA
+#---------------------------------------------------------------------------------------
+def con_receta_medica():
+    while True:
+        con_receta = obtener_texto('Necesita receta medica para despachar: ')
+
+        if con_receta != 'Si' and con_receta != 'No':
+            print('\n[ Dato ingresado invalido. ]\n')
+            continue
+
+        return con_receta
     
 #---------------------------------------------------------------------------------------
-# 
+#                                   OBTENER DATO DE TIPO ENTERO
 #---------------------------------------------------------------------------------------
 def obtener_dato_entero(prompt):
     while True:
@@ -128,7 +140,7 @@ def obtener_dato_entero(prompt):
    
     
 #---------------------------------------------------------------------------------------
-# 
+#                       OBTENER DATO DE TIPO FLOAT
 #---------------------------------------------------------------------------------------
 def obtener_dato_decimal(prompt):
     while True:
@@ -146,14 +158,15 @@ def obtener_dato_decimal(prompt):
     
     
 #---------------------------------------------------------------------------------------
-# 
+#                                   CREAR MEDICAMENTO
 #---------------------------------------------------------------------------------------
-def crear_medicamento(codigo,nombre,categoria,laboratorio,precio,stock,fecha_vencimiento):
+def crear_medicamento(codigo,nombre,categoria,laboratorio,receta,precio,stock,fecha_vencimiento):
     return {
         "Codigo": codigo,
         "Nombre": nombre,
         "Categoria": categoria,
         "Laboratorio": laboratorio,
+        "Receta" : receta,
         "Precio": precio,
         "Stock": stock,
         "Fecha": fecha_vencimiento
@@ -161,7 +174,7 @@ def crear_medicamento(codigo,nombre,categoria,laboratorio,precio,stock,fecha_ven
     
     
 #---------------------------------------------------------------------------------------
-# 
+#                                REGISTRAR UN MEDICAMENTO
 #---------------------------------------------------------------------------------------
 def registrar_medicamento():
     existe = False
@@ -182,7 +195,8 @@ def registrar_medicamento():
         print(f'\n[ El medicamento [ {nombre} ] ya existe ]\n')
         return 
     
-    
+    receta = con_receta_medica()
+
     categoria = obtener_categoria()
     stock = obtener_dato_entero('Ingrese la cantidad: ')
 
@@ -196,6 +210,7 @@ def registrar_medicamento():
         nombre,
         categoria,
         laboratorio,
+        receta,
         precio,
         stock,
         fecha
@@ -217,6 +232,7 @@ def mostrar_medicamento(i, m):
         Nombre      : {m['Nombre']}
         Categoria   : {m['Categoria']}
         Laboratorio : {m['Laboratorio']}
+        Receta      : {m['Receta']}
         Precio      : {m['Precio']}
         Stock       : {m['Stock']}
         Fecha       : {m['Fecha']}
@@ -244,28 +260,74 @@ def mostrar_medicamentos():
         
         
 #---------------------------------------------------------------------------------------
-# 
+#                           BUSCAR MEDICAMENTO POR CODIGO
 #---------------------------------------------------------------------------------------
-def buscar_codigo(codigo):
+def buscar_codigo_nombre(dato):
     for i,m in enumerate(medicamentos):
-        if m["Codigo"] == codigo:
+        if m["Codigo"] == dato or  m["Nombre"] == dato:
             return i, m
     return None,None
 
-#----------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------
+#                          MOSTRAR SUBMENU PARA BUSCAR MEDICAMENTO
+#---------------------------------------------------------------------------------------
+def mostrar_submenu():
+    print('''
+    ==============================
+          BUSCAR MEDICAMENTOS
+    ==============================
+    [1] Codigo.
+    [2] Nombre.
+    [3] Salir.
+    ==============================
+    ''')
+#---------------------------------------------------------------------------------------
+#                               BUSCAR MEDICAMENTO
+#---------------------------------------------------------------------------------------
 def buscar_medicamento():
-    codigo = input("Código: ").strip().upper()
-    i, m = buscar_codigo(codigo)
-    
-    if m:
-        mostrar_medicamento(i, m)
-        
-    else:
-        print("\n[ No encontrado. ]\n")
-#----------------------------------------------------------------------------------
+    while True:
+        mostrar_submenu()
+
+        try:
+            opcion = int(input('Elija una opcion: '))
+
+        except ValueError:
+            print('\n[ EL DATO INGRESADO ES INVALIDO. ]\n')
+            continue
+
+        os.system("cls")
+
+        if opcion == 1:
+            codigo = input("Código: ").strip().upper()
+            i, m = buscar_codigo_nombre(codigo)
+            
+            if m:
+                mostrar_medicamento(i, m)
+            else:
+                print("\n[ No encontrado. ]\n")
+
+        elif opcion == 2:
+            nombre = input("Nombre: ").strip().title()
+            i, m = buscar_codigo_nombre(nombre)
+                        
+            if m:
+                mostrar_medicamento(i, m)
+            else:
+                print("\n[ No encontrado. ]\n")
+
+        elif opcion == 3:
+            print('\n[ SALIENDO DE LA OPCION BUSCAR MEDICAMENTO. ]\n')
+            break
+
+        else:
+            print('\n[ OPCION INVALIDA. ]\n')
+
+#---------------------------------------------------------------------------------------
+#                                   ACTUALIZAR STOCK
+#---------------------------------------------------------------------------------------
 def actualizar_stock():
     codigo=input("Código: ").strip().upper()
-    i,m =buscar_codigo (codigo)
+    i,m = buscar_codigo_nombre(codigo)
     
     if m:
         mostrar_medicamento(i, m)
@@ -280,9 +342,11 @@ def actualizar_stock():
 
 
 #---------------------------------------------------------------------------------------
+# 
+#---------------------------------------------------------------------------------------
 def eliminar_medicamento():
     codigo=input("Código: ").strip().upper()
-    i,m=buscar_codigo(codigo)
+    i, m= buscar_codigo_nombre(codigo)
     if m:
         mostrar_medicamento(i, m)
         print('''
@@ -309,7 +373,9 @@ def eliminar_medicamento():
         print("\n[ No encontrado. ]\n")
         
         
-#---------------------------------------------------------------------------------------
+#-------------------#---------------------------------------------------------------------------------------
+# 
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------
 while True:
     mostrar_menu()
     try:
@@ -318,7 +384,8 @@ while True:
         print('\n[ El valor invresado es invalido. ]\n')
         continue
     
-    os.system('clear')
+    os.system("cls")
+    
     if opcion == 1:
         registrar_medicamento()
         
